@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  title: Vehicle Crud API
+  description: lorem ipsum
+  version: 0.0.1
+tags:
+  - name: Vehicles
+    description: Vehicles information
+servers:
+  - url: https://pendingbuydomain.com/dev
+    description: pending buy domain
+
+paths:
+  /vehicles:
+    post:
+      operationId: createVehicle
+      description: Create a new vehicle
+      summary: Create a new Vehicle
+      tags:
+        - Vehicles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVehicleRequest'
+      responses:
+        '201':
+          description: Vehicle created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVehicleResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+
+    CreateVehicleRequest:
+      required:
+        - trademarkId
+        - model
+        - year
+        - price
+      type: object
+      properties:
+        trademarkId:
+          type: string
+          minLength: 36
+          maxLength: 36
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The trademark of the vehicle
+        model:
+          type: string
+          example: "Model S"
+          description: The model of the vehicle
+        year:
+          type: integer
+          format: int32
+          example: 2020
+          description: The year of manufacture of the vehicle
+        price:
+          type: number
+          example: 79999.99
+          description: The price of the vehicle
+
+    CreateVehicleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 36
+          maxLength: 36
+          format: uuid
+          description: The unique identifier for the vehicle
+
+    GetVehiclesResponse:
+      type: object
+      properties:
+        vehicles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vehicle'
+
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier for the vehicle
+        trademarkId:
+          type: string
+          minLength: 36
+          maxLength: 36
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The trademark of the vehicle
+        model:
+          type: string
+          example: "Model S"
+          description: The model of the vehicle
+        year:
+          type: integer
+          format: int32
+          example: 2020
+          description: The year of manufacture of the vehicle
+        price:
+          type: number
+          example: 79999.99
+          description: The price of the vehicle
+      

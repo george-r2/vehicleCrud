@@ -1,0 +1,10 @@
+
+
+POST http://localhost:8080/vehicles
+Content-Type: application/json
+{
+    "trademarkId":"0ee88d76-3fed-41fb-bb12-f33f91d34524",
+    "model":"Nissan March Auto Sense",
+    "year":2024,
+    "price":50000
+}
