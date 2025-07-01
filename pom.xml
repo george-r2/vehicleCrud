@@ -99,6 +99,31 @@
 
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>mysql</id>
+            <dependencies>
+                   <dependency>
+                        <groupId>com.mysql</groupId>
+                        <artifactId>mysql-connector-j</artifactId>
+                        <scope>runtime</scope>
+                    </dependency>
+            </dependencies>
+        </profile>
+        
+        
+        <profile>
+            <id>mariadb</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.mariadb.jdbc</groupId>
+                    <artifactId>mariadb-java-client</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
